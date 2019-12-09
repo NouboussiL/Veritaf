@@ -1,0 +1,51 @@
+Philo=[pense,mange,faim1,faim2]{
+	etat=4;
+	init=0;
+	0=pense;
+	3=mange;
+	1=faim1;
+	2=faim2;
+	0->1 [arretePenser];
+	1->2 [prendBag1];
+	2->3 [prendBag2_mange];
+	3->0 [finManger];
+};;
+
+Baguette=[estPrise,estPosee]{
+	etat=2;
+	init=1;
+	0=estPrise;
+	1=estPosee;
+	0->1 [V];
+	1->0 [P];
+};;
+
+solution2 = < Philo philo1, Baguette b1, Philo philo2, Baguette b2, Philo philo3, Baguette b3, Philo philo4, Baguette b4, Philo philo5, Baguette b5 >{
+
+	< arretePenser, _, _, _, _, _, _, _, _, _ >;
+	< _, _, arretePenser, _, _, _ , _, _ , _, _ >;
+	< _, _, _, _, arretePenser, _, _, _ , _, _ >;
+	< _, _, _, _, _, _, arretePenser, _, _, _ >;
+	< _, _, _, _, _, _, _, _, arretePenser, _ >;
+
+	< prendBag1, _, _, _, _, _, _, _, _, P >;
+	< _, _, prendBag1, P, _, _ , _, _ , _, _ >;
+	< _, _, _, _, prendBag1, P, _, _ , _, _ >;
+	< _, _, _, _, _, _, prendBag1, P, _, _ >;
+	< _, _, _, _, _, _, _, _, prendBag1, P >;
+
+	< prendBag2_mange, P, _, _, _, _, _, _, _, _ >;
+	< _, P, prendBag2_mange, _, _, _ , _, _ , _, _ >;
+	< _, _, _, P, prendBag2_mange, _, _, _ , _, _ >;
+	< _, _, _, _, _, P, prendBag2_mange, _, _, _ >;
+	< _, _, _, _, _, _, _, P, prendBag2_mange, _ >;
+
+	< finManger, V, _, _, _, _, _, _, _, V >;
+	< _, V, finManger, V, _, _ , _, _ , _, _ >;
+	< _, _, _, V, finManger, V, _, _ , _, _ >;
+	< _, _, _, _, _, V, finManger, V, _, _ >;
+	< _, _, _, _, _, _, _, V, finManger, V >;
+
+};;
+
+todot solution2.dot solution2;;

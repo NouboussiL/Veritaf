@@ -38,53 +38,71 @@ def solution2(n):
 		res+="Philo philo"+str(i+1)+", Baguette b"+str(i+1)+", "
 
 	res = res[:len(res)-2]
-	res+=" >{\n"
-
+	res+=" >{\n\n"
+	prend1=""
+	prend2=""
+	fin=""
+	arr=""
 	#operations simples
 	for i in range(n):
-		prend1=""
-		prend2=""
-		fin=""
-		arr=""
+
 
 
 		if(i==0):
-			tmp=""
-			res+="	<mange, P, "
-			tmp+="	<finManger, V, "
+			arr+="	< arretePenser, _"
+			prend1+="	< prendBag1, _"
+			prend2+="	< prendBag2_mange, P"
+			fin+="	< finManger, V"
 			for j in range(n-2):
-				res+="_, _, "
-				tmp+="_, _, "
-			res+="_, P>;\n"
-			res+=tmp+"_, V>;\n"
+				arr+=", _, _"
+				prend1+=", _, _"
+				prend2+=", _, _"
+				fin+=", _, _"
+			arr+=", _, _ >;\n"
+			prend1+=", _, P >;\n"
+			prend2+=", _, _ >;\n"
+			fin+=", _, V >;\n"
+			
 		elif(i!=n-1):
-			tmp="	<"
-			res+="	<"
-			for j in range(i-1):
-				tmp+="_, _, "
-				res+="_, _, "
-			res+="_, P, mange, P, "
-			tmp+="_, V, finManger, V, "
-			for j in range(i,n-1):
-				res+="_, _, "
-				tmp+="_, _, "
-			res = res[:len(res)-2]+">;\n"
-			tmp = tmp[:len(tmp)-2]+">;\n"
-			res+=tmp
+			prend1+="	< "
+			prend2+="	< "
+			fin+="	< "
+			arr+="	< "
+			for j in range (i-1):
+				prend1+="_, _, "
+				prend2+="_, _, "
+				fin+="_, _, "
+				arr+="_, _, "
+			prend1+="_, _, prendBag1, P"
+			prend2+="_, P, prendBag2_mange, _"
+			fin+="_, V, finManger, V"
+			arr+="_, _, arretePenser, _"
+			for j in range (i,n-1):
+				prend1+=", _, _ "
+				prend2+=", _, _ "
+				fin+=", _, _ "
+				arr+=", _, _ "
+			prend1+=">;\n"
+			prend2+=">;\n"
+			fin+=">;\n"
+			arr+=">;\n"
+				
 		else:
-			res+="	<"
-			tmp="	<"
+			prend1+="	< "
+			prend2+="	< "
+			fin+="	< "
+			arr+="	< "
 			for j in range(n-2):
-				res+="_, _, "
-				tmp+="_, _, "
-			res+="_, P, mange, P>;\n"
-			res+=tmp+"_, V, finManger, V>;\n"
+				prend1+="_, _, "
+				prend2+="_, _, "
+				fin+="_, _, "
+				arr+="_, _, "
+			prend1+="_, _, prendBag1, P >;\n"
+			prend2+="_, P, prendBag2_mange, _ >;\n"
+			fin+="_, V, finManger, V >;\n"
+			arr+="_, _, arretePenser, _ >;\n"
 
-		res+=prend1+"\n"+prend2+"\n"+fin+"\n"+arr
-
-		
-
-
+	res+=arr+"\n"+prend1+"\n"+prend2+"\n"+fin+"\n"
 
 
 	return res+"};;\n"

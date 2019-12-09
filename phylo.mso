@@ -1,0 +1,11 @@
+Philo=[pense,afaim,mange]{
+	etat=3;
+	init=0;
+	0=pense;
+	1=afaim;
+	2=mange;
+	0->1 [attent];
+	0->2 [mangeDirect];
+	1-> [mangeApresAttente];
+	2->0 [finManger];
+};;

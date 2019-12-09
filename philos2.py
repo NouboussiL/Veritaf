@@ -3,13 +3,17 @@
 def Philo():
 	res=""
 	res+="Philo="
-	res+="[pense,mange]{\n"
-	res+="	etat=2;\n"
+	res+="[pense,mange,faim1,faim2]{\n"
+	res+="	etat=4;\n"
 	res+="	init=0;\n"
 	res+="	0=pense;\n"
-	res+="	1=mange;\n"
-	res+="	0->1 [mange];\n"
-	res+="	1->0 [finManger];\n"
+	res+="	3=mange;\n"
+	res+="	1=faim1;\n"
+	res+="	2=faim2;\n"
+	res+="	0->1 [arretePenser];\n"
+	res+="	1->2 [prendBag1];\n"
+	res+="	2->3 [prendBag2_mange];\n"
+	res+="	3->0 [finManger];\n"
 	res+="};;\n"
 	return res
 
@@ -38,6 +42,12 @@ def solution2(n):
 
 	#operations simples
 	for i in range(n):
+		prend1=""
+		prend2=""
+		fin=""
+		arr=""
+
+
 		if(i==0):
 			tmp=""
 			res+="	<mange, P, "
@@ -69,6 +79,10 @@ def solution2(n):
 				tmp+="_, _, "
 			res+="_, P, mange, P>;\n"
 			res+=tmp+"_, V, finManger, V>;\n"
+
+		res+=prend1+"\n"+prend2+"\n"+fin+"\n"+arr
+
+		
 
 
 

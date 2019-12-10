@@ -110,5 +110,5 @@ def solution2(n):
 
 print(Philo())
 print(Baguette())
-print(solution2(5))
+print(solution2(2))
 print("todot solution2.dot solution2;;")

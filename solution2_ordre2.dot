@@ -1,0 +1,36 @@
+digraph system {
+_36[label="", shape=none ];
+_36->36;
+11 [label= "11 [b1.estPrise, b2.estPrise, philo1.mange, philo2.faim1]"];
+3 [label= "3 [b1.estPrise, b2.estPrise, philo1.mange, philo2.pense]"];
+45 [label= "45 [b1.estPosee, b2.estPosee, philo1.faim1, philo2.faim1]"];
+21 [label= "21 [b1.estPosee, b2.estPrise, philo1.faim1, philo2.faim2]"];
+37 [label= "37 [b1.estPosee, b2.estPosee, philo1.faim1, philo2.pense]"];
+25 [label= "25 [b1.estPrise, b2.estPrise, philo1.faim1, philo2.mange]"];
+14 [label= "14 [b1.estPosee, b2.estPrise, philo1.faim2, philo2.faim1]"];
+6 [label= "6 [b1.estPosee, b2.estPrise, philo1.faim2, philo2.pense]"];
+44 [label= "44 [b1.estPosee, b2.estPosee, philo1.pense, philo2.faim1]"];
+20 [label= "20 [b1.estPosee, b2.estPrise, philo1.pense, philo2.faim2]"];
+36 [label= "36 [b1.estPosee, b2.estPosee, philo1.pense, philo2.pense]"];
+24 [label= "24 [b1.estPrise, b2.estPrise, philo1.pense, philo2.mange]"];
+3->11 [label= ""];
+45->21 [label= ""];
+37->45 [label= ""];
+21->25 [label= ""];
+25->37 [label= ""];
+11->44 [label= ""];
+3->36 [label= ""];
+45->14 [label= ""];
+37->6 [label= ""];
+14->11 [label= ""];
+6->3 [label= ""];
+44->45 [label= ""];
+20->21 [label= ""];
+36->37 [label= ""];
+24->25 [label= ""];
+6->14 [label= ""];
+44->20 [label= ""];
+36->44 [label= ""];
+20->24 [label= ""];
+24->36 [label= ""];
+}

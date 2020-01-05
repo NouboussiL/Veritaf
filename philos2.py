@@ -110,5 +110,19 @@ def solution2(n):
 
 print(Philo())
 print(Baguette())
-print(solution2(2))
-print("todot solution2.dot solution2;;")
+print(solution2(3))
+
+print("""/* Il est impossible que les philosophes mangent en même temps */
+solution2 += conflit <- AG(!(philo1.mange && philo2.mange && philo3.mange));;
+
+/* Chaque philosophe affamé mangera dans le futur */
+solution2 += affame1 <- AG(philo1.faim2 -> AF(philo1.mange));;
+solution2 += affame2 <- AG(philo2.faim2 -> AF(philo2.mange));;
+solution2 += affame3 <- AG(philo3.faim2 -> AF(philo3.mange));;
+
+/* Chaque philosophe qui pense aura faim dans le futur */
+solution2 += faim1 <- AG(philo1.pense -> AF(philo1.faim1));;
+solution2 += faim2 <- AG(philo2.pense -> AF(philo2.faim1));;
+solution2 += faim3 <- AG(philo3.pense -> AF(philo3.faim1));;""")
+
+print("todot solution2_ordre3.dot solution2;;")

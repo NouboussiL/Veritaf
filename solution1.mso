@@ -1,0 +1,84 @@
+Philo=[pense,mange,faim]{
+	etat=3;
+	init=0;
+	0=pense;
+	1=faim;
+	2=mange;
+	0->1 [afaim];
+	2->0 [finManger];
+	1->2 [commManger];
+	0->0 [repense];
+	1->1 [pensepas];
+	2->2 [pensepas];
+};;
+
+Arete=[nonO,droite,gauche]{
+	etat=3;
+	init=0;
+	0=nonO;
+	1=droite;
+	2=gauche;
+	0->1 [gd];
+	1->0 [reset];
+	1->1 [d];
+	0->2 [dg];
+	2->2 [g];
+	2->0 [reset];
+	0->0 [reset,rien];
+};;
+
+solution1 = < Philo philo1, Arete a1, Philo philo2, Arete a2, Philo philo3, Arete a3 >{
+
+	< finManger, reset, _, _, _, reset >;
+	< _, reset, finManger, reset, _, _ >;
+	< _, _, _, reset, finManger, reset >;
+
+	< afaim, _, repense, _, repense, _ >;
+	< repense, _, afaim, _, repense, _ >;
+	< repense, _, repense, _, afaim, _ >;
+
+	< afaim, gd, pensepas, _, pensepas, dg >;
+	< pensepas, dg, afaim, gd, pensepas, _ >;
+	< pensepas, _, pensepas, dg, afaim, gd >;
+
+	< afaim, gd, pensepas, _, repense, _ >;
+	< repense, _, afaim, gd, pensepas, _ >;
+	< pensepas, _, repense, _, afaim, gd >;
+
+	< afaim, _, repense, _, pensepas, dg >;
+	< pensepas, dg, afaim, _, repense, _ >;
+	< repense, _, pensepas, dg, afaim, _ >;
+
+	< commManger, rien, _, _, _, rien >;
+	< _, rien, commManger, rien, _, _ >;
+	< _, _, _, rien, commManger, rien >;
+
+	< commManger, g, _, _, _, rien >;
+	< _, rien, commManger, g, _, _ >;
+	< _, _, _, rien, commManger, g >;
+
+	< commManger, rien, _, _, _, d >;
+	< _, d, commManger, rien, _, _ >;
+	< _, _, _, d, commManger, rien >;
+
+	< commManger, g, _, _, _, d >;
+	< _, d, commManger, g, _, _ >;
+	< _, _, _, d, commManger, g >;
+
+};;
+
+/* Il est impossible que les philosophes mangent en même temps */
+solution1 += conflit <- AG(!(philo1.mange && philo2.mange && philo3.mange));;
+
+/* Chaque philosophe affamé mangera dans le futur */
+solution1 += affame1 <- AG(philo1.faim -> AF(philo1.mange));;
+solution1 += affame2 <- AG(philo2.faim -> AF(philo2.mange));;
+solution1 += affame3 <- AG(philo3.faim -> AF(philo3.mange));;
+
+/* Chaque philosophe qui pense aura faim dans le futur */
+solution1 += faim1 <- AG(philo1.pense -> AF(philo1.faim));;
+solution1 += faim2 <- AG(philo2.pense -> AF(philo2.faim));;
+solution1 += faim3 <- AG(philo3.pense -> AF(philo3.faim));;
+todot solution1.dot solution1;;
+erreur = solution1 -> philo1.mange && philo2.mange || philo1.mange && philo3.mange || philo2.mange && philo3.mange;;
+todot erreurSolution1.dot erreur;;
